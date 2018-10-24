@@ -3,10 +3,12 @@ import { NgModule } from '@angular/core';
 
 import { AppComponent } from './app.component';
 import { DataService } from './services/data.service';
+import { PlanetsTableComponent } from './planets-table/planets-table.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    PlanetsTableComponent
   ],
   imports: [
     BrowserModule
