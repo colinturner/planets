@@ -1,11 +1,15 @@
 import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { PageHeaderComponent } from './page-header/page-header.component';
+import { PlanetsTableComponent } from './planets-table/planets-table.component';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        AppComponent
+        AppComponent,
+        PageHeaderComponent,
+        PlanetsTableComponent
       ],
     }).compileComponents();
   }));
@@ -16,16 +20,10 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have as title 'planets'`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('planets');
-  });
-
-  it('should render title in a h1 tag', () => {
+  it('should render page header', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('h1').textContent).toContain('Welcome to planets!');
+    expect(compiled.querySelector('app-page-header').textContent).toContain('Explore all the worlds');
   });
 });
