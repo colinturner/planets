@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Observable } from 'rxjs';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-planets-table',
@@ -35,5 +36,9 @@ export class PlanetsTableComponent implements OnInit {
 
   findFilmName(films: string[]) {
     return films.map((film) => this.films[film]);
+  }
+
+  terrainList(terrains: string) {
+    return terrains.split(', ').map(terrain => _.upperFirst(terrain));
   }
 }
