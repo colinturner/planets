@@ -1,3 +1,24 @@
-<p>
-  planets-table works!
-</p>
+<table class="table">
+    <thead class="thead-dark">
+      <tr>
+        <th scope="col">Name</th>
+        <th scope="col">Population</th>
+        <th scope="col">Diameter</th>
+        <th scope="col">Rotation Period</th>
+        <th scope="col">Orbital Period</th>
+        <th scope="col">Terrain</th>
+        <th scope="col">Films</th>
+      </tr>
+    </thead>
+    <tbody *ngIf="planets">
+      <tr *ngFor="let planet of planets.results">
+        <td>{{ planet.name }}</td>
+        <td>{{ planet.population }}</td>
+        <td>{{ planet.diameter }}</td>
+        <td>{{ planet.rotation_period }}</td>
+        <td>{{ planet.orbital_period }}</td>
+        <td>{{ planet.terrain }}</td>
+        <td>{{ planet.films }}</td>
+      </tr>
+    </tbody>
+  </table>
