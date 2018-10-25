@@ -10,24 +10,25 @@ import { getViewData } from '@angular/core/src/render3/instructions';
 export class PlanetsTableComponent implements OnInit {
 
   public planets: object;
+  public films: object;
 
   constructor(
     private dataService: DataService
   ) {}
 
   ngOnInit() {
-    this.getPlanetsData();
+    this.getData('planets');
+    this.getData('films');
   }
 
-  getPlanetsData() {
-    this.dataService.getAll<any[]>()
+  getData(item: string) {
+    this.dataService.getAll<any[]>(item)
     .subscribe((response: any[]) => {
-      this.planets = response;
-      console.log(this.planets);
+      this[item] = response;
+      console.log(this[item]);
     },
     error => () => {
       console.log('Whoops, something went wrong');
     });
   }
-
 }

@@ -14,12 +14,12 @@ export class DataService {
     this.search = configuration.search;
   }
 
-  public getAll<T>(): Observable<T> {
-    return this.http.get<T>(this.actionUrl);
+  public getAll<T>(item: string): Observable<T> {
+    return this.http.get<T>(this.actionUrl + item);
   }
 
-  public getSingle<T>(name: string): Observable<T> {
-    return this.http.get<T>(this.actionUrl + this.search + name);
+  public getSingle<T>(name: string, item: string): Observable<T> {
+    return this.http.get<T>(this.actionUrl + item + this.search + name);
   }
 }
 
