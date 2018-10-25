@@ -1,2 +1,2 @@
 <app-page-header></app-page-header>
-<app-planets-table></app-planets-table>
+<app-planets-table [planets]="(planets$ | async)?.results"></app-planets-table>

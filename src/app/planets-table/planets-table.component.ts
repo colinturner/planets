@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
@@ -10,7 +10,7 @@ import * as _ from 'lodash';
 })
 export class PlanetsTableComponent implements OnInit {
 
-  public planets$: Observable<object>;
+  @Input() planets: any;
   public films: object = {};
 
   constructor(
@@ -18,7 +18,6 @@ export class PlanetsTableComponent implements OnInit {
   ) {}
 
   ngOnInit() {
-    this.planets$ = this.getData('planets');
     this.getFilms();
   }
 
