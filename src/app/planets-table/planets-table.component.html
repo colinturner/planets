@@ -13,10 +13,10 @@
     <tbody>
       <tr *ngFor="let planet of (planets$ | async)?.results">
         <td>{{ planet.name }}</td>
-        <td>{{ planet.population }}</td>
-        <td>{{ planet.diameter }}</td>
-        <td>{{ planet.rotation_period }}</td>
-        <td>{{ planet.orbital_period }}</td>
+        <td>{{ (planet.population === 'unknown') ? 'Unknown' : (planet.population | number) }}</td>
+        <td>{{ planet.diameter | number }}</td>
+        <td>{{ planet.rotation_period | number }}</td>
+        <td>{{ planet.orbital_period | number }}</td>
         <td>
           <ul class="no-padding" *ngFor="let terrain of terrainList(planet.terrain)">{{ terrain }}</ul>
         </td>
