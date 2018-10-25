@@ -10,8 +10,8 @@
         <th scope="col">Films</th>
       </tr>
     </thead>
-    <tbody *ngIf="planets">
-      <tr *ngFor="let planet of planets.results">
+    <tbody>
+      <tr *ngFor="let planet of (planets$ | async)?.results">
         <td>{{ planet.name }}</td>
         <td>{{ planet.population }}</td>
         <td>{{ planet.diameter }}</td>

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DataService } from '../services/data.service';
-import { getViewData } from '@angular/core/src/render3/instructions';
+import { Observable } from 'rxjs';
 
 @Component({
   selector: 'app-planets-table',
@@ -9,26 +9,19 @@ import { getViewData } from '@angular/core/src/render3/instructions';
 })
 export class PlanetsTableComponent implements OnInit {
 
-  public planets: object;
-  public films: object;
+  public planets$: Observable<object>;
+  public films$: Observable<object>;
 
   constructor(
     private dataService: DataService
   ) {}
 
   ngOnInit() {
-    this.getData('planets');
-    this.getData('films');
+    this.planets$ = this.getData('planets');
+    this.films$ = this.getData('films');
   }
 
   getData(item: string) {
-    this.dataService.getAll<any[]>(item)
-    .subscribe((response: any[]) => {
-      this[item] = response;
-      console.log(this[item]);
-    },
-    error => () => {
-      console.log('Whoops, something went wrong');
-    });
+    return this.dataService.getAll<any[]>(item);
   }
 }
