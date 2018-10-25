@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { DataService } from '../services/data.service';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
@@ -8,30 +8,12 @@ import * as _ from 'lodash';
   templateUrl: './planets-table.component.html',
   styleUrls: ['./planets-table.component.sass']
 })
-export class PlanetsTableComponent implements OnInit {
+export class PlanetsTableComponent {
 
   @Input() planets: any;
-  public films: object = {};
+  @Input() films: any;
 
-  constructor(
-    private dataService: DataService
-  ) {}
-
-  ngOnInit() {
-    this.getFilms();
-  }
-
-  getData(item: string) {
-    return this.dataService.getAll<any>(item);
-  }
-
-  getFilms() {
-    this.getData('films').subscribe((data) => {
-      data.results.map((film) => {
-        this.films[film.url] = film.title;
-      });
-    });
-  }
+  constructor() {}
 
   findFilmName(films: string[]) {
     return films.map((film) => this.films[film]);

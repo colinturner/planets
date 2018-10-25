@@ -9,6 +9,7 @@ import { DataService } from './services/data.service';
 })
 export class AppComponent implements OnInit {
   public planets$: Observable<object>;
+  public films: object = {};
 
   constructor(
     private dataService: DataService
@@ -16,9 +17,18 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.planets$ = this.getData('planets');
+    this.getFilms();
   }
 
   getData(item: string) {
     return this.dataService.getAll<any>(item);
+  }
+
+  getFilms() {
+    this.getData('films').subscribe((data) => {
+      data.results.map((film) => {
+        this.films[film.url] = film.title;
+      });
+    });
   }
 }
