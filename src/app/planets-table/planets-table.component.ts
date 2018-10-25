@@ -23,7 +23,7 @@ export class PlanetsTableComponent implements OnInit {
   }
 
   getData(item: string) {
-    return this.dataService.getAll<any[]>(item);
+    return this.dataService.getAll<any>(item);
   }
 
   getFilms() {
