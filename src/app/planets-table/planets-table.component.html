@@ -18,7 +18,9 @@
         <td>{{ planet.rotation_period }}</td>
         <td>{{ planet.orbital_period }}</td>
         <td>{{ planet.terrain }}</td>
-        <td>{{ planet.films }}</td>
+        <td>
+          <ul class="no-padding" *ngFor="let film of findFilmName(planet.films)">{{ film }}</ul>
+        </td>
       </tr>
     </tbody>
   </table>

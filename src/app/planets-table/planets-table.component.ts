@@ -10,7 +10,7 @@ import { Observable } from 'rxjs';
 export class PlanetsTableComponent implements OnInit {
 
   public planets$: Observable<object>;
-  public films$: Observable<object>;
+  public films: object = {};
 
   constructor(
     private dataService: DataService
@@ -18,10 +18,22 @@ export class PlanetsTableComponent implements OnInit {
 
   ngOnInit() {
     this.planets$ = this.getData('planets');
-    this.films$ = this.getData('films');
+    this.getFilms();
   }
 
   getData(item: string) {
     return this.dataService.getAll<any[]>(item);
+  }
+
+  getFilms() {
+    this.getData('films').subscribe((data) => {
+      data.results.map((film) => {
+        this.films[film.url] = film.title;
+      });
+    });
+  }
+
+  findFilmName(films: string[]) {
+    return films.map((film) => this.films[film]);
   }
 }
