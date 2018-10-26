@@ -64,8 +64,7 @@ export class AppComponent implements OnInit {
     return (direction === 'asc') ? 'desc' : 'asc';
   }
 
-  private sortPlanetsBy(field: string) {
-    const currentDirection = this.searchDirection[field];
+  private changeStringsToNumbers(field: string) {
     this.planets.results.forEach(v => {
       if (!isNaN(v[field])) {
         return v[field] = Number(v[field]);
@@ -74,9 +73,18 @@ export class AppComponent implements OnInit {
         return v[field] = -1;
       }
     });
-    this.planets.results = _.orderBy(this.planets.results, [field], [this.searchDirection[field]]);
+  }
+
+  private setSearchDirection(field: string, currentDirection) {
     this.searchDirection = _.mapValues(this.searchDirection, () => 'asc');
     this.searchDirection[field] = this.toggleSearchDirection(currentDirection);
+  }
+
+  private sortPlanetsBy(field: string) {
+    const currentDirection = this.searchDirection[field];
+    this.changeStringsToNumbers(field);
+    this.planets.results = _.orderBy(this.planets.results, [field], [this.searchDirection[field]]);
+    this.setSearchDirection(field, currentDirection);
   }
 
   private extractPageFromNextProperty(data: any) {
