@@ -16,15 +16,14 @@ export class DataService {
     this.pageOption = configuration.pageOption;
   }
 
-  public getAll<T>(item: string, pageNumber?: number): Observable<T> {
-    if (!pageNumber) {
-      return this.http.get<T>(this.actionUrl + item);
-    }
-    return this.http.get<T>(this.actionUrl + item + this.pageOption + pageNumber);
-  }
-
-  public getSingle<T>(name: string, item: string): Observable<T> {
-    return this.http.get<T>(this.actionUrl + item + this.search + name);
+  public getAll<T>(category: string, pageNumber?: number, searchTerm?: string): Observable<T> {
+    return this.http.get<T>(
+      this.actionUrl
+      + category
+      + this.pageOption
+      + (pageNumber || '')
+      + this.search
+      + (searchTerm || ''));
   }
 }
 

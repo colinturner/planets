@@ -1,5 +1,5 @@
 <app-page-header></app-page-header>
-<app-search-bar (searchTerm)="getPlanet($event)"></app-search-bar>
+<app-search-bar id="search" (searchTerm)="getPlanets(undefined, $event); setSearchTerm($event);"></app-search-bar>
 <app-planets-table
   [planets]="planets.results"
   [films]="films">
@@ -8,5 +8,5 @@
   [itemsCount]="itemsCount"
   [itemsPerPage]="itemsPerPage"
   [currentPage]="currentPage"
-  (changePage)="getPlanets($event)"
+  (changePage)="getPlanets($event, searchTerm)"
 ></app-pagination>

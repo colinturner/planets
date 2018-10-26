@@ -8,11 +8,12 @@ import { DataService } from './services/data.service';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit {
-  public planets: object = {};
-  public films: object = {};
-  public itemsCount: number;
-  public itemsPerPage = 10;
-  public currentPage: number;
+  private planets: object = {};
+  private films: object = {};
+  private itemsCount: number;
+  private itemsPerPage = 10;
+  private currentPage: number;
+  private searchTerm: string;
 
   constructor(
     private dataService: DataService
@@ -23,12 +24,12 @@ export class AppComponent implements OnInit {
     this.getFilms();
   }
 
-  private getAllData(item: string, pageNumber?: number) {
-    return this.dataService.getAll<any>(item, pageNumber);
+  private setSearchTerm(term: string) {
+    this.searchTerm = term;
   }
 
-  private getSingleData(searchTerm: string, category: string) {
-    return this.dataService.getSingle<any>(searchTerm, category);
+  private getData(category: string, pageNumber?: number, searchTerm?: string) {
+    return this.dataService.getAll<any>(category, pageNumber, searchTerm);
   }
 
   private setPageInfo(data: any) {
@@ -37,20 +38,14 @@ export class AppComponent implements OnInit {
     this.currentPage = this.determineCurrentPage(data);
   }
 
-  private getPlanet(searchTerm: string) {
-    this.getSingleData(searchTerm, 'planets').subscribe((data) => {
-      this.setPageInfo(data);
-    });
-  }
-
-  private getPlanets(pageNumber?: number) {
-    this.getAllData('planets', pageNumber).subscribe((data) => {
+  private getPlanets(pageNumber?: number, searchTerm?: string) {
+    this.getData('planets', pageNumber, searchTerm).subscribe((data) => {
       this.setPageInfo(data);
     });
   }
 
   private getFilms() {
-    this.getAllData('films').subscribe((data) => {
+    this.getData('films').subscribe((data) => {
       data.results.map((film) => {
         this.films[film.url] = film.title;
       });
