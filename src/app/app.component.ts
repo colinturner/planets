@@ -70,7 +70,9 @@ export class AppComponent implements OnInit {
       if (!isNaN(v[field])) {
         return v[field] = Number(v[field]);
       }
-      return v[field] = -1;
+      if (v[field] === 'unknown') {
+        return v[field] = -1;
+      }
     });
     this.planets.results = _.orderBy(this.planets.results, [field], [this.searchDirection[field]]);
     this.searchDirection = _.mapValues(this.searchDirection, () => 'asc');
