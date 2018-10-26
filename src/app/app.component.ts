@@ -15,10 +15,17 @@ export class AppComponent implements OnInit {
   private itemsPerPage = 10;
   private currentPage: number;
   private searchTerm: string;
+  private searchDirection = {};
 
   constructor(
     private dataService: DataService
-  ) {}
+  ) {
+    this.searchDirection = {
+      name: 'asc',
+      population: 'asc',
+      diameter: 'asc',
+    };
+  }
 
   ngOnInit() {
     this.getPlanets();
@@ -53,8 +60,15 @@ export class AppComponent implements OnInit {
     });
   }
 
+  private toggleSearchDirection(direction: string) {
+    return (direction === 'asc') ? 'desc' : 'asc';
+  }
+
   private sortPlanetsBy(field: string) {
-    this.planets.results = _.orderBy(this.planets.results, [field], ['asc']);
+    const currentDirection = this.searchDirection[field];
+    this.planets.results = _.orderBy(this.planets.results, [field], [this.searchDirection[field]]);
+    this.searchDirection = _.mapValues(this.searchDirection, () => 'asc');
+    this.searchDirection[field] = this.toggleSearchDirection(currentDirection);
   }
 
   private extractPageFromNextProperty(data: any) {
