@@ -31,11 +31,10 @@ export class PaginationComponent implements OnChanges {
   }
 
   onLastPage() {
-    return this.lastPage === this.currentPage;
+    return this.currentPage === this.lastPage;
   }
 
   onSecondToLastPage() {
-    return (this.lastPage - 1) === this.currentPage;
+    return this.currentPage === (this.lastPage - 1);
   }
-
 }
