@@ -31,19 +31,21 @@ export class AppComponent implements OnInit {
     return this.dataService.getSingle<any>(searchTerm, category);
   }
 
+  private setPageInfo(data: any) {
+    this.planets = data;
+    this.itemsCount = data.count;
+    this.currentPage = this.determineCurrentPage(data);
+  }
+
   private getPlanet(searchTerm: string) {
     this.getSingleData(searchTerm, 'planets').subscribe((data) => {
-      this.planets = data;
-      this.itemsCount = data.count;
-      this.currentPage = this.determineCurrentPage(data);
+      this.setPageInfo(data);
     });
   }
 
   private getPlanets(pageNumber?: number) {
     this.getAllData('planets', pageNumber).subscribe((data) => {
-      this.planets = data;
-      this.itemsCount = data.count;
-      this.currentPage = this.determineCurrentPage(data);
+      this.setPageInfo(data);
     });
   }
 
