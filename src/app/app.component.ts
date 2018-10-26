@@ -23,37 +23,51 @@ export class AppComponent implements OnInit {
     this.getFilms();
   }
 
-  getData(item: string, pageNumber?: number) {
+  private getAllData(item: string, pageNumber?: number) {
     return this.dataService.getAll<any>(item, pageNumber);
   }
 
-  getPlanets(pageNumber?: number) {
-    console.log('getPlanets', pageNumber);
-    this.getData('planets', pageNumber).subscribe((data) => {
+  private getSingleData(searchTerm: string, category: string) {
+    return this.dataService.getSingle<any>(searchTerm, category);
+  }
+
+  private getPlanet(searchTerm: string) {
+    this.getSingleData(searchTerm, 'planets').subscribe((data) => {
+      this.planets = data;
+      this.itemsCount = 1;
+    });
+  }
+
+  private getPlanets(pageNumber?: number) {
+    this.getAllData('planets', pageNumber).subscribe((data) => {
       this.planets = data;
       this.itemsCount = data.count;
       this.currentPage = this.determineCurrentPage(data);
     });
   }
 
-  getFilms() {
-    this.getData('films').subscribe((data) => {
+  private getFilms() {
+    this.getAllData('films').subscribe((data) => {
       data.results.map((film) => {
         this.films[film.url] = film.title;
       });
     });
   }
 
-  extractPageFromNextProperty(data: any) {
+  private extractPageFromNextProperty(data: any) {
     return Number(data.next.match(/([0-9])+/g).pop()) - 1;
   }
 
-  determineCurrentPage(data: any) {
+  private lastPage() {
+    return Math.ceil(this.itemsCount / this.itemsPerPage);
+  }
+
+  private determineCurrentPage(data: any) {
     if (!data.previous) {
       return 1;
     }
     if (!data.next) {
-      return Math.ceil(this.itemsCount / this.itemsPerPage);
+      return this.lastPage();
     }
     return this.extractPageFromNextProperty(data);
   }
