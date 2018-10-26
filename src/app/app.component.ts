@@ -23,12 +23,13 @@ export class AppComponent implements OnInit {
     this.getFilms();
   }
 
-  getData(item: string) {
-    return this.dataService.getAll<any>(item);
+  getData(item: string, pageNumber?: number) {
+    return this.dataService.getAll<any>(item, pageNumber);
   }
 
-  getPlanets() {
-    this.getData('planets').subscribe((data) => {
+  getPlanets(pageNumber?: number) {
+    console.log('getPlanets', pageNumber);
+    this.getData('planets', pageNumber).subscribe((data) => {
       this.planets = data;
       this.itemsCount = data.count;
       this.currentPage = this.determineCurrentPage(data);

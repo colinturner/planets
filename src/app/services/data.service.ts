@@ -9,13 +9,18 @@ import { Configuration } from '../app.constants';
 export class DataService {
   private actionUrl: string;
   private search: string;
+  private pageOption: string;
   constructor(private http: HttpClient, private configuration: Configuration) {
     this.actionUrl = configuration.serverUrl;
     this.search = configuration.search;
+    this.pageOption = configuration.pageOption;
   }
 
-  public getAll<T>(item: string): Observable<T> {
-    return this.http.get<T>(this.actionUrl + item);
+  public getAll<T>(item: string, pageNumber?: number): Observable<T> {
+    if (!pageNumber) {
+      return this.http.get<T>(this.actionUrl + item);
+    }
+    return this.http.get<T>(this.actionUrl + item + this.pageOption + pageNumber);
   }
 
   public getSingle<T>(name: string, item: string): Observable<T> {

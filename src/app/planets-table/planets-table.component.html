@@ -14,9 +14,9 @@
       <tr *ngFor="let planet of planets">
         <td>{{ planet.name }}</td>
         <td>{{ (planet.population === 'unknown') ? 'Unknown' : (planet.population | number) }}</td>
-        <td>{{ planet.diameter | number }}</td>
-        <td>{{ planet.rotation_period | number }}</td>
-        <td>{{ planet.orbital_period | number }}</td>
+        <td>{{ (planet.diameter === 'unknown') ? 'Unknown' : (planet.diameter | number) }}</td>
+        <td>{{ (planet.rotation_period === 'unknown') ? 'Unknown' : (planet.rotation_period | number) }}</td>
+        <td>{{ (planet.orbital_period === 'unknown') ? 'Unknown' : (planet.orbital_period | number) }}</td>
         <td>
           <ul class="no-padding" *ngFor="let terrain of terrainList(planet.terrain)">{{ terrain }}</ul>
         </td>
