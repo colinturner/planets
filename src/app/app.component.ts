@@ -34,7 +34,8 @@ export class AppComponent implements OnInit {
   private getPlanet(searchTerm: string) {
     this.getSingleData(searchTerm, 'planets').subscribe((data) => {
       this.planets = data;
-      this.itemsCount = 1;
+      this.itemsCount = data.count;
+      this.currentPage = this.determineCurrentPage(data);
     });
   }
 
