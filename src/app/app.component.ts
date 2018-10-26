@@ -44,7 +44,7 @@ export class AppComponent implements OnInit {
   }
 
   extractPageFromNextProperty(data: any) {
-    return Number(data.next.match(/([0-9])+/g).pop());
+    return Number(data.next.match(/([0-9])+/g).pop()) - 1;
   }
 
   determineCurrentPage(data: any) {
