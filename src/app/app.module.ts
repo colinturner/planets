@@ -8,13 +8,15 @@ import { PageHeaderComponent } from './page-header/page-header.component';
 import { HttpClientModule} from '@angular/common/http';
 import { Configuration } from './app.constants';
 import { PaginationComponent } from './pagination/pagination.component';
+import { SearchBarComponent } from './search-bar/search-bar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlanetsTableComponent,
     PageHeaderComponent,
-    PaginationComponent
+    PaginationComponent,
+    SearchBarComponent
   ],
   imports: [
     BrowserModule,
