@@ -2,7 +2,8 @@
 <app-search-bar id="search" (searchTerm)="getPlanets(undefined, $event); setSearchTerm($event);"></app-search-bar>
 <app-planets-table
   [planets]="planets.results"
-  [films]="films">
+  [films]="films"
+  (sort)="sortPlanetsBy($event)">
 </app-planets-table>
 <app-pagination
   [itemsCount]="itemsCount"

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DataService } from './services/data.service';
+import * as _ from 'lodash';
 
 @Component({
   selector: 'app-root',
@@ -50,6 +51,10 @@ export class AppComponent implements OnInit {
         this.films[film.url] = film.title;
       });
     });
+  }
+
+  private sortPlanetsBy(field: string) {
+    this.planets.results = _.orderBy(this.planets.results, [field], ['asc']);
   }
 
   private extractPageFromNextProperty(data: any) {

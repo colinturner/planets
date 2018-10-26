@@ -1,13 +1,13 @@
 <table class="table">
     <thead class="thead-dark">
       <tr>
-        <th scope="col">Name</th>
-        <th scope="col">Population</th>
-        <th scope="col">Diameter</th>
-        <th scope="col">Rotation Period</th>
-        <th scope="col">Orbital Period</th>
-        <th scope="col">Terrain</th>
-        <th scope="col">Films</th>
+        <th scope="col" class="sortable" (click)="sortBy('name')">Name</th>
+        <th scope="col" class="sortable">Population</th>
+        <th scope="col" class="sortable">Diameter</th>
+        <th scope="col" class="sortable">Rotation Period</th>
+        <th scope="col" class="sortable">Orbital Period</th>
+        <th scope="col" class="non-sortable">Terrain</th>
+        <th scope="col" class="non-sortable">Films</th>
       </tr>
     </thead>
     <tbody>
