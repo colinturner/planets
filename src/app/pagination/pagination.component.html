@@ -1,9 +1,39 @@
 <div class="pagination">
-  <span class="selectable pagination-button edge-button">First</span>
-  <span class="selectable pagination-button glyphicon glyphicon-triangle-left"></span>
-  <span class="current-page pagination-button">{{ currentPage }}</span>
-  <span class="selectable pagination-button" (click)="goTo(currentPage + 1)">{{ currentPage + 1 }}</span>
-  <span class="pagination-button">...</span>
-  <span class="selectable pagination-button glyphicon glyphicon-triangle-right"></span>
-  <span class="selectable pagination-button edge-button">Last</span>
+  <span
+    class="pagination-button edge-button"
+    [ngClass]="{selectable: !onFirstPage()}"
+    (click)="goTo(1)">
+    First
+  </span>
+  <span
+    *ngIf="!onFirstPage()"
+    class="selectable pagination-button glyphicon glyphicon-triangle-left"
+    (click)="goTo(currentPage - 1)">
+  </span>
+  <span
+    class="current-page pagination-button">
+    {{ currentPage }}
+  </span>
+  <span
+    *ngIf="!onLastPage()"
+    class="selectable pagination-button"
+    (click)="goTo(currentPage + 1)">
+    {{ currentPage + 1 }}
+  </span>
+  <span
+    *ngIf="!onLastPage() && !onSecondToLastPage()"
+    class="pagination-button">
+    ...
+  </span>
+  <span
+    *ngIf="!onLastPage()"
+    class="selectable pagination-button glyphicon glyphicon-triangle-right"
+    (click)="goTo(currentPage + 1)">
+  </span>
+  <span
+    class="pagination-button edge-button"
+    [ngClass]="{selectable: !onLastPage()}"
+    (click)="goTo(lastPage)">
+    Last
+  </span>
 </div>

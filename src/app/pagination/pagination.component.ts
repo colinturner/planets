@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, Output } from '@angular/core';
+import { Component, Input, Output, OnChanges } from '@angular/core';
 import { EventEmitter } from '@angular/core';
 
 @Component({
@@ -6,19 +6,36 @@ import { EventEmitter } from '@angular/core';
   templateUrl: './pagination.component.html',
   styleUrls: ['./pagination.component.sass']
 })
-export class PaginationComponent implements OnInit {
+export class PaginationComponent implements OnChanges {
   @Input() itemsCount: any;
   @Input() itemsPerPage: any;
   @Input() currentPage: any;
   @Output() changePage = new EventEmitter<any>();
+  private lastPage: number;
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit() {
+  ngOnChanges() {
+    this.lastPage = Math.ceil(this.itemsCount / this.itemsPerPage);
   }
 
   goTo(num: number) {
+    if (num <= 0 || num === this.currentPage) {
+      return;
+    }
     this.changePage.next(num);
+  }
+
+  onFirstPage() {
+    return this.currentPage === 1;
+  }
+
+  onLastPage() {
+    return this.lastPage === this.currentPage;
+  }
+
+  onSecondToLastPage() {
+    return (this.lastPage - 1) === this.currentPage;
   }
 
 }
