@@ -7,12 +7,14 @@ import { PlanetsTableComponent } from './planets-table/planets-table.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { HttpClientModule} from '@angular/common/http';
 import { Configuration } from './app.constants';
+import { PaginationComponent } from './pagination/pagination.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     PlanetsTableComponent,
-    PageHeaderComponent
+    PageHeaderComponent,
+    PaginationComponent
   ],
   imports: [
     BrowserModule,

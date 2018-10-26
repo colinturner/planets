@@ -1,6 +1,10 @@
 <app-page-header></app-page-header>
 <app-planets-table
-  [planets]="(planets$ | async)?.results"
-  [films]="films"
->
+  [planets]="planets.results"
+  [films]="films">
 </app-planets-table>
+<app-pagination
+  [itemsCount]="itemsCount"
+  [itemsPerPage]="itemsPerPage"
+  [currentPage]="currentPage"
+></app-pagination>
