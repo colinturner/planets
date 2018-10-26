@@ -66,6 +66,12 @@ export class AppComponent implements OnInit {
 
   private sortPlanetsBy(field: string) {
     const currentDirection = this.searchDirection[field];
+    this.planets.results.forEach(v => {
+      if (!isNaN(v[field])) {
+        return v[field] = Number(v[field]);
+      }
+      return v[field] = -1;
+    });
     this.planets.results = _.orderBy(this.planets.results, [field], [this.searchDirection[field]]);
     this.searchDirection = _.mapValues(this.searchDirection, () => 'asc');
     this.searchDirection[field] = this.toggleSearchDirection(currentDirection);
