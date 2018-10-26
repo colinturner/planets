@@ -2,6 +2,9 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { PageHeaderComponent } from './page-header/page-header.component';
 import { PlanetsTableComponent } from './planets-table/planets-table.component';
+import { PaginationComponent } from './pagination/pagination.component';
+import { HttpClient, HttpHandler } from '@angular/common/http';
+import { Configuration } from './app.constants';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
@@ -9,8 +12,14 @@ describe('AppComponent', () => {
       declarations: [
         AppComponent,
         PageHeaderComponent,
-        PlanetsTableComponent
+        PlanetsTableComponent,
+        PaginationComponent
       ],
+      providers: [
+        HttpClient,
+        HttpHandler,
+        Configuration
+      ]
     }).compileComponents();
   }));
 
