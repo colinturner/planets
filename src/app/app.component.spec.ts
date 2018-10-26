@@ -7,7 +7,6 @@ import { HttpClient, HttpHandler } from '@angular/common/http';
 import { Configuration } from './app.constants';
 
 describe('AppComponent', () => {
-  let component: AppComponent;
   let app: AppComponent;
   let fixture: ComponentFixture<AppComponent>;
   let data1;
@@ -32,7 +31,6 @@ describe('AppComponent', () => {
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
-    component = fixture.componentInstance;
     app = new AppComponent(null);
     fixture.detectChanges();
 
