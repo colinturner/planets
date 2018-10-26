@@ -1,6 +1,11 @@
 <div class="search-component">
   <div class="search-group">
     <i class="glyphicon glyphicon-search"></i>
-    <input (keyup)="search($event.srcElement.value)" class="search-input" type="text" placeholder="Search">
+    <input
+      (keyup)="searchWhenFinishedTyping($event.srcElement.value)"
+      (keydown)="resetTypingTimer()"
+      class="search-input"
+      type="text"
+      placeholder="Search">
   </div>
 </div>
