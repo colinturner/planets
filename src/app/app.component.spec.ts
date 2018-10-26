@@ -63,14 +63,18 @@ describe('AppComponent', () => {
     expect(compiled.querySelector('app-page-header').textContent).toContain('Explore all the worlds');
   });
 
-  it('should extract current page from "next page" property string', () => {
-    expect(app.extractPageFromNextProperty(data1)).toBe(5);
+  describe('extractPageFromNextProperty method', () => {
+    it('should extract current page from "next page" property string', () => {
+      expect(app.extractPageFromNextProperty(data1)).toBe(5);
+    });
   });
 
-  it('should determine the current page', () => {
-    expect(app.determineCurrentPage(data1)).toBe(5);
-    expect(app.determineCurrentPage(data2)).toBe(1);
-    app.itemsCount = data3.count;
-    expect(app.determineCurrentPage(data3)).toBe(7);
+  describe('determineCurrentPage method', () => {
+    it('should determine the current page', () => {
+      expect(app.determineCurrentPage(data1)).toBe(5);
+      expect(app.determineCurrentPage(data2)).toBe(1);
+      app.itemsCount = data3.count;
+      expect(app.determineCurrentPage(data3)).toBe(7);
+    });
   });
 });
