@@ -24,6 +24,8 @@ export class AppComponent implements OnInit {
       name: 'asc',
       population: 'asc',
       diameter: 'asc',
+      rotation_period: 'asc',
+      orbital_period: 'asc'
     };
   }
 
