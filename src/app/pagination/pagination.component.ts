@@ -13,8 +13,6 @@ export class PaginationComponent implements OnChanges {
   @Output() changePage = new EventEmitter<any>();
   private lastPage: number;
 
-  constructor() {}
-
   ngOnChanges() {
     this.lastPage = Math.ceil(this.itemsCount / this.itemsPerPage);
   }

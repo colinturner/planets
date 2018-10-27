@@ -14,8 +14,6 @@ export class PlanetsTableComponent {
   @Input() films: any;
   @Output() sort = new EventEmitter<any>();
 
-  constructor() {}
-
   sortBy(field: string) {
     this.sort.next(field);
   }

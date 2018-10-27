@@ -15,12 +15,12 @@ export class AppComponent implements OnInit {
   private itemsPerPage = 10;
   private currentPage: number;
   private searchTerm: string;
-  private searchDirection = {};
+  private sortDirection = {};
 
   constructor(
     private dataService: DataService
   ) {
-    this.searchDirection = {
+    this.sortDirection = {
       name: 'asc',
       population: 'asc',
       diameter: 'asc',
@@ -34,10 +34,12 @@ export class AppComponent implements OnInit {
     this.getFilms();
   }
 
+  // Searchterm setter
   private setSearchTerm(term: string) {
     this.searchTerm = term;
   }
 
+  // START HTTP methods
   private getData(category: string, pageNumber?: number, searchTerm?: string) {
     return this.dataService.getAll<any>(category, pageNumber, searchTerm);
   }
@@ -61,11 +63,9 @@ export class AppComponent implements OnInit {
       });
     });
   }
+  // END HTTP methods
 
-  private toggleSearchDirection(direction: string) {
-    return (direction === 'asc') ? 'desc' : 'asc';
-  }
-
+  // START Sorting methods
   private changeStringsToNumbers(field: string) {
     this.planets.results.forEach(v => {
       if (!isNaN(v[field])) {
@@ -77,18 +77,24 @@ export class AppComponent implements OnInit {
     });
   }
 
-  private setSearchDirection(field: string, currentDirection) {
-    this.searchDirection = _.mapValues(this.searchDirection, () => 'asc');
-    this.searchDirection[field] = this.toggleSearchDirection(currentDirection);
+  private toggleSortDirection(direction: string) {
+    return (direction === 'asc') ? 'desc' : 'asc';
+  }
+
+  private setSortDirection(field: string, currentDirection) {
+    this.sortDirection = _.mapValues(this.sortDirection, () => 'asc');
+    this.sortDirection[field] = this.toggleSortDirection(currentDirection);
   }
 
   private sortPlanetsBy(field: string) {
-    const currentDirection = this.searchDirection[field];
+    const currentDirection = this.sortDirection[field];
     this.changeStringsToNumbers(field);
-    this.planets.results = _.orderBy(this.planets.results, [field], [this.searchDirection[field]]);
-    this.setSearchDirection(field, currentDirection);
+    this.planets.results = _.orderBy(this.planets.results, [field], [this.sortDirection[field]]);
+    this.setSortDirection(field, currentDirection);
   }
+  // END Sorting methods
 
+  // START Pagination methods
   private extractPageFromNextProperty(data: any) {
     return Number(data.next.match(/([0-9])+/g).pop()) - 1;
   }
@@ -106,4 +112,5 @@ export class AppComponent implements OnInit {
     }
     return this.extractPageFromNextProperty(data);
   }
+  // END Pagination methods
 }

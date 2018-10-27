@@ -6,6 +6,6 @@ import { Component } from '@angular/core';
   styleUrls: ['./page-header.component.sass']
 })
 export class PageHeaderComponent {
-  public title = 'Planets';
+  public title = 'Welcome to Planets!';
   public description = 'Explore all the worlds of Star Wars in one place';
 }
