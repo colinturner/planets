@@ -27,4 +27,8 @@ export class PlanetsTableComponent {
   terrainList(terrains: string) {
     return terrains.split(', ').map(terrain => _.upperFirst(terrain));
   }
+
+  unknown(field: string|number) {
+    return (['unknown', -1].includes(field));
+  }
 }
