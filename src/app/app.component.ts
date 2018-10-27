@@ -67,7 +67,7 @@ export class AppComponent implements OnInit {
 
   // START Sorting methods
   private changeStringsToNumbers(field: string) {
-    this.planets.results.forEach(v => {
+    this.planets['results'].forEach(v => {
       if (!isNaN(v[field])) {
         return v[field] = Number(v[field]);
       }
@@ -89,7 +89,7 @@ export class AppComponent implements OnInit {
   private sortPlanetsBy(field: string) {
     const currentDirection = this.sortDirection[field];
     this.changeStringsToNumbers(field);
-    this.planets.results = _.orderBy(this.planets.results, [field], [this.sortDirection[field]]);
+    this.planets['results'] = _.orderBy(this.planets['results'], [field], [this.sortDirection[field]]);
     this.setSortDirection(field, currentDirection);
   }
   // END Sorting methods
