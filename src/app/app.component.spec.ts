@@ -1,10 +1,11 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { PageHeaderComponent } from './page-header/page-header.component';
-import { PlanetsTableComponent } from './planets-table/planets-table.component';
-import { PaginationComponent } from './pagination/pagination.component';
+import { PageHeaderComponent } from './components/page-header/page-header.component';
+import { PlanetsTableComponent } from './components/planets-table/planets-table.component';
+import { PaginationComponent } from './components/pagination/pagination.component';
 import { HttpClient, HttpHandler } from '@angular/common/http';
 import { Configuration } from './app.constants';
+import { SearchBarComponent } from './components/search-bar/search-bar.component';
 
 describe('AppComponent', () => {
   let app: AppComponent;
@@ -19,7 +20,8 @@ describe('AppComponent', () => {
         AppComponent,
         PageHeaderComponent,
         PlanetsTableComponent,
-        PaginationComponent
+        PaginationComponent,
+        SearchBarComponent,
       ],
       providers: [
         HttpClient,

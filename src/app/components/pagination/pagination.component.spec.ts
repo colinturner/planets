@@ -20,7 +20,7 @@ describe('PaginationComponent', () => {
     fixture = TestBed.createComponent(PaginationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
-    currentPageEl = fixture.debugElement.query(By.css('span.current-page'));
+    currentPageEl = fixture.debugElement.query(By.css('div.current-page'));
     console.log(currentPageEl);
   });
 
@@ -33,7 +33,7 @@ describe('PaginationComponent', () => {
     component.itemsPerPage = 10;
     component.currentPage = 2;
     fixture.detectChanges();
-    console.log(currentPageEl);
-    expect(currentPageEl.nativeElement.innerHTML).toBe('2');
+    console.log('currentPageEl', currentPageEl);
+    expect(currentPageEl.nativeElement.innerHTML).toBe(' 2 ');
   });
 });

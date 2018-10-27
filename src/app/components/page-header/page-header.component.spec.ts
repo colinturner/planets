@@ -23,8 +23,8 @@ describe('PageHeaderComponent', () => {
     expect(component).toBeTruthy();
   });
 
-  it(`should have as title 'Planets'`, () => {
+  it(`should have as title 'Welcome to Planets!'`, () => {
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual('Planets');
+    expect(app.title).toEqual('Welcome to Planets!');
   });
 });

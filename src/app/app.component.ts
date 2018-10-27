@@ -11,7 +11,7 @@ import * as _ from 'lodash';
 export class AppComponent implements OnInit {
   private planets: object = {};
   private films: object = {};
-  private itemsCount: number;
+  public itemsCount: number;
   private itemsPerPage = 10;
   private currentPage: number;
   private searchTerm: string;
@@ -95,15 +95,15 @@ export class AppComponent implements OnInit {
   // END Sorting methods
 
   // START Pagination methods
-  private extractPageFromNextProperty(data: any) {
+  extractPageFromNextProperty(data: any) {
     return Number(data.next.match(/([0-9])+/g).pop()) - 1;
   }
 
-  private lastPage() {
+  lastPage() {
     return Math.ceil(this.itemsCount / this.itemsPerPage);
   }
 
-  private determineCurrentPage(data: any) {
+  determineCurrentPage(data: any) {
     if (!data.previous) {
       return 1;
     }
