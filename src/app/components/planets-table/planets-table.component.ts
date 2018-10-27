@@ -2,6 +2,7 @@ import { Component, Input, Output } from '@angular/core';
 import { Observable } from 'rxjs';
 import * as _ from 'lodash';
 import { EventEmitter } from '@angular/core';
+import { IPlanet, IFilm } from 'src/app/interfaces/interfaces';
 
 @Component({
   selector: 'app-planets-table',
@@ -10,8 +11,8 @@ import { EventEmitter } from '@angular/core';
 })
 export class PlanetsTableComponent {
 
-  @Input() planets: any;
-  @Input() films: any;
+  @Input() planets: IPlanet[];
+  @Input() films: IFilm[];
   @Output() sort = new EventEmitter<any>();
 
   sortBy(field: string) {

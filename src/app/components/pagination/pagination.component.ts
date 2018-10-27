@@ -7,9 +7,9 @@ import { EventEmitter } from '@angular/core';
   styleUrls: ['./pagination.component.sass']
 })
 export class PaginationComponent implements OnChanges {
-  @Input() itemsCount: any;
-  @Input() itemsPerPage: any;
-  @Input() currentPage: any;
+  @Input() itemsCount: number;
+  @Input() itemsPerPage: number;
+  @Input() currentPage: number;
   @Output() changePage = new EventEmitter<any>();
   private lastPage: number;
 

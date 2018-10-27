@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { DataService } from './services/data.service';
 import * as _ from 'lodash';
+import { IData } from './interfaces/interfaces';
 
 @Component({
   selector: 'app-root',
@@ -44,7 +45,7 @@ export class AppComponent implements OnInit {
     return this.dataService.getAll<any>(category, pageNumber, searchTerm);
   }
 
-  private setPageInfo(data: any) {
+  private setPageInfo(data: IData) {
     this.planets = data;
     this.itemsCount = data.count;
     this.currentPage = this.determineCurrentPage(data);
@@ -95,7 +96,7 @@ export class AppComponent implements OnInit {
   // END Sorting methods
 
   // START Pagination methods
-  extractPageFromNextProperty(data: any) {
+  extractPageFromNextProperty(data: IData) {
     return Number(data.next.match(/([0-9])+/g).pop()) - 1;
   }
 
@@ -103,7 +104,7 @@ export class AppComponent implements OnInit {
     return Math.ceil(this.itemsCount / this.itemsPerPage);
   }
 
-  determineCurrentPage(data: any) {
+  determineCurrentPage(data: IData) {
     if (!data.previous) {
       return 1;
     }
