@@ -26,7 +26,7 @@ export class PlanetsTableComponent {
     return terrains.split(', ').map(terrain => _.upperFirst(terrain));
   }
 
-  private even(i: number) {
+  even(i: number) {
     return i % 2 === 0;
   }
 

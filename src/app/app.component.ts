@@ -9,7 +9,7 @@ import * as _ from 'lodash';
   styleUrls: ['./app.component.sass']
 })
 export class AppComponent implements OnInit {
-  private planets: object = {};
+  public planets: object = {};
   private films: object = {};
   public itemsCount: number;
   private itemsPerPage = 10;
@@ -66,7 +66,7 @@ export class AppComponent implements OnInit {
   // END HTTP methods
 
   // START Sorting methods
-  private changeStringsToNumbers(field: string) {
+  changeStringsToNumbers(field: string) {
     this.planets['results'].forEach(v => {
       if (!isNaN(v[field])) {
         return v[field] = Number(v[field]);
@@ -86,7 +86,7 @@ export class AppComponent implements OnInit {
     this.sortDirection[field] = this.toggleSortDirection(currentDirection);
   }
 
-  private sortPlanetsBy(field: string) {
+  sortPlanetsBy(field: string) {
     const currentDirection = this.sortDirection[field];
     this.changeStringsToNumbers(field);
     this.planets['results'] = _.orderBy(this.planets['results'], [field], [this.sortDirection[field]]);

@@ -21,7 +21,6 @@ describe('PaginationComponent', () => {
     component = fixture.componentInstance;
     fixture.detectChanges();
     currentPageEl = fixture.debugElement.query(By.css('div.current-page'));
-    console.log(currentPageEl);
   });
 
   it('should create', () => {
@@ -33,7 +32,22 @@ describe('PaginationComponent', () => {
     component.itemsPerPage = 10;
     component.currentPage = 2;
     fixture.detectChanges();
-    console.log('currentPageEl', currentPageEl);
     expect(currentPageEl.nativeElement.innerHTML).toBe(' 2 ');
+  });
+
+  it('should not allow illegal page changes', () => {
+    component.currentPage = 3;
+    expect(component.goTo(3)).toBe(undefined);
+    component.currentPage = 1;
+    expect(component.goTo(0)).toBe(undefined);
+  });
+
+  it('should calculate value of last page', () => {
+    component.itemsCount = 61;
+    component.itemsPerPage = 10;
+    expect(component.calculateLastPage()).toBe(7);
+
+    component.itemsCount = 60;
+    expect(component.calculateLastPage()).toBe(6);
   });
 });

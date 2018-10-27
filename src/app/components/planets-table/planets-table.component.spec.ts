@@ -43,4 +43,20 @@ describe('PlanetsTableComponent', () => {
       .toEqual([ 'Revenge of the Sith', 'A New Hope' ]);
     });
   });
+
+  describe('unknown()', () => {
+    it('should determine whether value is unknown', () => {
+      expect(comp.unknown(-1)).toEqual(true);
+      expect(comp.unknown('unknown')).toEqual(true);
+      expect(comp.unknown('2000')).toEqual(false);
+      expect(comp.unknown(2000)).toEqual(false);
+    });
+  });
+
+  describe('even()', () => {
+    it('should determine whether value is even', () => {
+      expect(comp.even(1)).toEqual(false);
+      expect(comp.even(0)).toEqual(true);
+    });
+  });
 });

@@ -34,7 +34,6 @@ describe('AppComponent', () => {
   beforeEach(() => {
     fixture = TestBed.createComponent(AppComponent);
     app = new AppComponent(null);
-    fixture.detectChanges();
 
     data1 = {
       count: 61,
@@ -53,6 +52,23 @@ describe('AppComponent', () => {
       next: null,
       previous: 'https://swapi.co/api/planets/?page=6',
     };
+
+    app.planets = {
+      results: [
+        {
+          'name': 'Felucia',
+          'population': '8500000',
+        },
+        {
+          'name': 'Cato Neimoidia',
+          'population': 'unknown',
+        },
+        {
+          'name': 'Saleucami',
+          'population': '1400000000',
+        },
+      ]
+    };
   });
 
   it('should create the app', () => {
@@ -62,7 +78,8 @@ describe('AppComponent', () => {
 
   it('should render page header', () => {
     const compiled = fixture.debugElement.nativeElement;
-    expect(compiled.querySelector('app-page-header').textContent).toContain('Explore all the worlds');
+    fixture.detectChanges();
+    expect(compiled.querySelector('app-page-header').textContent).toContain('Planets');
   });
 
   describe('extractPageFromNextProperty method', () => {
@@ -77,6 +94,48 @@ describe('AppComponent', () => {
       expect(app.determineCurrentPage(data2)).toBe(1);
       app.itemsCount = data3.count;
       expect(app.determineCurrentPage(data3)).toBe(7);
+    });
+  });
+
+  describe('sortPlanetsBy method', () => {
+    it('should sort the planets by field', () => {
+      const sortedPlanets = app.sortPlanetsBy('population');
+      expect(app.planets['results']).toEqual([
+        {
+          'name': 'Cato Neimoidia',
+          'population': -1,
+        },
+        {
+          'name': 'Felucia',
+          'population': 8500000,
+        },
+        {
+          'name': 'Saleucami',
+          'population': 1400000000,
+        },
+      ]);
+    });
+  });
+
+  describe('changeStringsToNumbers method', () => {
+    it('should change object\'s values from strings to numbers', () => {
+      app.changeStringsToNumbers('population');
+      expect(app.planets['results']).toEqual(
+        [
+          {
+            'name': 'Felucia',
+            'population': 8500000,
+          },
+          {
+            'name': 'Cato Neimoidia',
+            'population': -1,
+          },
+          {
+            'name': 'Saleucami',
+            'population': 1400000000,
+          },
+        ]
+      );
     });
   });
 });

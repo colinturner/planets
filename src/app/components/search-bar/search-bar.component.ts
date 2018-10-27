@@ -10,15 +10,15 @@ export class SearchBarComponent {
   @Output() searchTerm = new EventEmitter<any>();
   private typingTimer: any;
 
-  private search(term: string) {
+  search(term: string) {
     this.searchTerm.next(term);
   }
 
-  public resetTypingTimer() {
+  resetTypingTimer() {
     clearTimeout(this.typingTimer);
   }
 
-  public searchWhenFinishedTyping(term: string) {
+  searchWhenFinishedTyping(term: string) {
     clearTimeout(this.typingTimer);
     this.typingTimer = setTimeout(() => this.search(term), 200);
   }

@@ -14,7 +14,7 @@ export class PaginationComponent implements OnChanges {
   private lastPage: number;
 
   ngOnChanges() {
-    this.lastPage = Math.ceil(this.itemsCount / this.itemsPerPage);
+    this.lastPage = this.calculateLastPage();
   }
 
   goTo(num: number) {
@@ -22,6 +22,10 @@ export class PaginationComponent implements OnChanges {
       return;
     }
     this.changePage.next(num);
+  }
+
+  calculateLastPage() {
+    return Math.ceil(this.itemsCount / this.itemsPerPage);
   }
 
   onFirstPage() {
