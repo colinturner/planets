@@ -1,39 +1,39 @@
 <div class="pagination">
-  <span
+  <div
     class="pagination-button edge-button"
     [ngClass]="{selectable: !onFirstPage()}"
     (click)="goTo(1)">
     First
-  </span>
-  <span
+  </div>
+  <div
     *ngIf="!onFirstPage()"
     class="selectable pagination-button glyphicon glyphicon-triangle-left"
     (click)="goTo(currentPage - 1)">
-  </span>
-  <span
+  </div>
+  <div
     class="current-page pagination-button">
     {{ currentPage }}
-  </span>
-  <span
+  </div>
+  <div
     *ngIf="!onLastPage()"
     class="selectable pagination-button"
     (click)="goTo(currentPage + 1)">
     {{ currentPage + 1 }}
-  </span>
-  <span
+  </div>
+  <div
     *ngIf="!onLastPage() && !onSecondToLastPage()"
     class="pagination-button">
     ...
-  </span>
-  <span
+  </div>
+  <div
     *ngIf="!onLastPage()"
     class="selectable pagination-button glyphicon glyphicon-triangle-right"
     (click)="goTo(currentPage + 1)">
-  </span>
-  <span
+  </div>
+  <div
     class="pagination-button edge-button"
     [ngClass]="{selectable: !onLastPage()}"
     (click)="goTo(lastPage)">
     Last
-  </span>
+  </div>
 </div>

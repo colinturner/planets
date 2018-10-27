@@ -26,6 +26,10 @@ export class PlanetsTableComponent {
     return terrains.split(', ').map(terrain => _.upperFirst(terrain));
   }
 
+  private even(i: number) {
+    return i % 2 === 0;
+  }
+
   unknown(field: string|number) {
     return (['unknown', -1].includes(field));
   }

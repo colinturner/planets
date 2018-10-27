@@ -1,3 +1,13 @@
+@import '../../variables.sass';
+
+table
+  border-collapse: collapse
+  border-radius: 12px
+  overflow: hidden
+  margin-top: 10px
+  & td
+    vertical-align: middle
+
 .no-padding
   padding: 0
 
@@ -6,3 +16,15 @@
 
 .non-sortable
   cursor: default
+
+.thead
+  background-color: $turquoise
+  & th
+    color: white
+    text-transform: uppercase
+
+.light-row
+  background-color: $super-light-grey
+
+.dark-row
+  background-color: $blue-grey

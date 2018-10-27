@@ -1,5 +1,5 @@
 <table class="table">
-    <thead class="thead-dark">
+    <thead class="thead">
       <tr>
         <th scope="col" class="sortable" (click)="sortBy('name')">Name</th>
         <th scope="col" class="sortable" (click)="sortBy('population')">Population</th>
@@ -11,7 +11,7 @@
       </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let planet of planets">
+      <tr *ngFor="let planet of planets; let i = index" [ngClass]="{'light-row': even(i), 'dark-row': !even(i)}">
         <td>{{ planet.name }}</td>
         <td>{{ unknown(planet.population) ? 'Unknown' : (planet.population | number) }}</td>
         <td>{{ unknown(planet.diameter) ? 'Unknown' : (planet.diameter | number) }}</td>
