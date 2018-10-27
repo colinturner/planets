@@ -1,27 +1,28 @@
 # Planets
+This is a web app that lets you interact with the Star Wars API for quick information in a beautiful table.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.5.
+## Getting started
+Please clone this repo and navigate to the project's root folder in your terminal.
 
 ## Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
 ## Running unit tests
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io). Your Google Chrome browser should open automatically.
 
-## Running end-to-end tests
+## Features
+- Display the following planet categories: Name, Population, Diameter, Rotation Period, Orbital Period, Terrain, and Films.
 
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
+- Paginate the API response, 10 planets at a time.
 
-## Further help
+- Search entire API by planet name.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+- All fields are ascending/descending-sortable (per page) by clicking on the column header, expect Terrain and Films.
+
+## File tree structure
+- Custom components --> src/app/components
+- Custom interfaces --> src/app/interfaces
+- Custom services --> src/app/services
+- Root HTML --> src/app/app.component.html
