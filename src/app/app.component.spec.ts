@@ -79,7 +79,7 @@ describe('AppComponent', () => {
   it('should render page header', () => {
     const compiled = fixture.debugElement.nativeElement;
     fixture.detectChanges();
-    expect(compiled.querySelector('app-page-header').textContent).toContain('Planets');
+    expect(compiled.querySelector('app-page-header').textContent).toContain('Explore all the worlds');
   });
 
   describe('extractPageFromNextProperty method', () => {
