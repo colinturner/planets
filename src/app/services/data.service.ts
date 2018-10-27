@@ -10,12 +10,14 @@ export class DataService {
   private actionUrl: string;
   private search: string;
   private pageOption: string;
+
   constructor(private http: HttpClient, private configuration: Configuration) {
     this.actionUrl = configuration.serverUrl;
     this.search = configuration.search;
     this.pageOption = configuration.pageOption;
   }
 
+  // Build the URL and send an HTTP Get request
   public getAll<T>(category: string, pageNumber?: number, searchTerm?: string): Observable<T> {
     return this.http.get<T>(
       this.actionUrl

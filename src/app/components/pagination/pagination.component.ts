@@ -17,6 +17,7 @@ export class PaginationComponent implements OnChanges {
     this.lastPage = this.calculateLastPage();
   }
 
+  // Go to specific page
   goTo(num: number) {
     if (num <= 0 || num === this.currentPage) {
       return;

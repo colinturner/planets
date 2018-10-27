@@ -34,7 +34,7 @@ export class AppComponent implements OnInit {
     this.getFilms();
   }
 
-  // Searchterm setter
+  // Search Term setter
   private setSearchTerm(term: string) {
     this.searchTerm = term;
   }
